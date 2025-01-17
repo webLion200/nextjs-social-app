@@ -2,6 +2,8 @@ import signupImage from "@/assets/signup-image.jpg";
 import Image from "next/image";
 import Link from "next/link";
 import SignUpForm from "./SignUpForm";
+import { Suspense } from "react";
+import { Loader2 } from "lucide-react";
 
 export default function singUp() {
   return (
@@ -18,7 +20,9 @@ export default function singUp() {
             </p>
           </div>
           <div className="space-y-5">
-            <SignUpForm></SignUpForm>
+            <Suspense fallback={<Loader2 className="mx-auto animate-spin" />}>
+              <SignUpForm />
+            </Suspense>
             <Link href="/login" className="block text-center hover:underline">
               Already have an account? Log in
             </Link>
