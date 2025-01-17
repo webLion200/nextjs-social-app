@@ -19,3 +19,16 @@ export const loginSchema = z.object({
 });
 
 export type LoginValues = z.infer<typeof loginSchema>;
+
+export type UserInfo = {
+  id: string;
+  username: string;
+  displayName: string;
+  email: string | null;
+  passwordHash?: string | null;
+  googleId?: string | null;
+  avatarUrl?: string | null;
+  bio?: string | null;
+  createdAt?: Date;
+  sessions?: string | null;
+};
