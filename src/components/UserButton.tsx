@@ -3,7 +3,8 @@
 import { logout } from "@/app/(auth)/actions";
 import { useSession } from "@/app/(main)/SessionProvider";
 import { cn } from "@/lib/utils";
-import { LogOutIcon, UserIcon } from "lucide-react";
+import { LogOutIcon, UserIcon, Monitor, Check } from "lucide-react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import {
   DropdownMenu,
@@ -11,6 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import UserAvatar from "./UserAvatar";
@@ -21,6 +25,7 @@ interface UserButtonProps {
 
 export default function UserButton({ className }: UserButtonProps) {
   const { user } = useSession();
+  const { theme, setTheme } = useTheme();
 
   return (
     <DropdownMenu>
@@ -38,6 +43,27 @@ export default function UserButton({ className }: UserButtonProps) {
             Profile
           </DropdownMenuItem>
         </Link>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>
+            <Monitor className="mr-2 size-4" />
+            Theme
+          </DropdownMenuSubTrigger>
+          <DropdownMenuSubContent>
+            <DropdownMenuItem onClick={() => setTheme("light")}>
+              Light
+              {theme === "light" && <Check className="ms-2 size-4" />}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("dark")}>
+              Dark
+              {theme === "dark" && <Check className="ms-2 size-4" />}
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setTheme("system")}>
+              System
+              {theme === "system" && <Check className="ms-2 size-4" />}
+            </DropdownMenuItem>
+          </DropdownMenuSubContent>
+        </DropdownMenuSub>
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
