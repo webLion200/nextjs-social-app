@@ -32,3 +32,7 @@ export type UserInfo = {
   createdAt?: Date;
   sessions?: string | null;
 };
+
+export const createPostSchema = z.object({
+  content: requiredString,
+});
