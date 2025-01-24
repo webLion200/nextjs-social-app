@@ -22,7 +22,7 @@ export default function Post({ post }: PostProps) {
             {post.user.displayName}
           </Link>
           <Link href={`/posts/${post.id}`}>
-            <span>{formatRelativeDate(post.createdAt)}</span>
+            {/* <span>{formatRelativeDate(post.createdAt)}</span> */}
           </Link>
         </div>
         <div className="whitespace-pre-line break-words">{post.content}</div>
